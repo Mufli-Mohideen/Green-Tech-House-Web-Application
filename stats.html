@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Green Tech House</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      .service-item {
+        background: #f8f9fa;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      .service-text {
+        background: #fff;
+        transition: background 0.3s, transform 0.3s;
+      }
+      .service-text:hover {
+        background: #e9ecef;
+        transform: scale(1.05);
+      }
+      .back-to-top {
+        background: #00b894;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+      <a
+        href="index.html"
+        class="navbar-brand d-flex align-items-center px-4 px-lg-5"
+      >
+        <img src="img/green tech house 2.png" alt="" class="logo-img" />
+      </a>
+      <button
+        type="button"
+        class="navbar-toggler me-4"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="h-100 d-inline-flex align-items-center mx-n2">
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="dashboard.html" class="nav-item nav-link">Home</a>
+        </div>
+        <a
+          href="login.html"
+          class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block"
+          >Log out<i class="fa fa-arrow-right ms-3"></i
+        ></a>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="container-xxl py-5" id="dashboard">
+      <div class="container">
+        <div
+          class="text-center mx-auto mb-5 wow fadeInUp"
+          data-wow-delay="0.1s"
+          style="max-width: 500px"
+        >
+          <center>
+            <a href="index.html"
+              ><img src="img/green tech house 1.png" alt="" class="logo-img"
+            /></a>
+          </center>
+          <h1 class="display-5 mb-5">Stats</h1>
+        </div>
+
+    <div class="container-xxl py-5" id="dashboard">
+      <div class="row g-4">
+        
+        <!-- Temperature Data Chart -->
+        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item rounded d-flex h-100">
+            <div class="service-text rounded p-5 text-center animated-div">
+              <h4 class="mb-3">Temperature Data</h4>
+              <canvas id="temperatureDataChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Humidity Data Chart -->
+        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item rounded d-flex h-100">
+            <div class="service-text rounded p-5 text-center animated-div">
+              <h4 class="mb-3">Humidity Data</h4>
+              <canvas id="humidityDataChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soil Moisture Data Chart -->
+        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item rounded d-flex h-100">
+            <div class="service-text rounded p-5 text-center animated-div">
+              <h4 class="mb-3">Soil Moisture Data</h4>
+              <canvas id="soilMoistureDataChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Light Intensity Data Chart -->
+        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item rounded d-flex h-100">
+            <div class="service-text rounded p-5 text-center animated-div">
+              <h4 class="mb-3">Light Intensity Data</h4>
+              <canvas id="lightIntensityDataChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- CO2 Percentage Data Chart -->
+        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item rounded d-flex h-100">
+            <div class="service-text rounded p-5 text-center animated-div">
+              <h4 class="mb-3">CO2 Percentage Data</h4>
+              <canvas id="CO2percentageDataChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item rounded d-flex h-100">
+            <div class="service-text rounded p-3 text-center">
+              <h4 class="mb-3">Bulb Control</h4>
+              <div class="form-check form-switch switch-left">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="bulb-switch"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Dashboard End -->
+
+    <!-- Back to Top -->
+    <a
+      href="#"
+      class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Firebase Configuration and Initialization -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        set,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+      
+      //web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAPdormgW7r3EGN7lln2ym3ChKNBj8KsRs",
+        authDomain: "green-tech-house.firebaseapp.com",
+        projectId: "green-tech-house",
+        storageBucket: "green-tech-house.appspot.com",
+        messagingSenderId: "204207544609",
+        appId: "1:204207544609:web:6c338ac402628d5507c660",
+        measurementId: "G-G487Y6FNPT",
+        databaseURL: "https://green-tech-house-default-rtdb.firebaseio.com/",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      function handleFirebaseError(error) {
+        console.error("Firebase error:", error);
+      }
+
+      // Initialize Charts
+      const temperatureChart = new Chart(document.getElementById("temperatureDataChart"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            label: "Temperature",
+            data: [],
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+          }],
+        },
+      });
+
+      const humidityChart = new Chart(document.getElementById("humidityDataChart"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            label: "Humidity",
+            data: [],
+            backgroundColor: "rgba(153, 102, 255, 0.2)",
+            borderColor: "rgba(153, 102, 255, 1)",
+            borderWidth: 1,
+          }],
+        },
+      });
+
+      const soilMoistureChart = new Chart(document.getElementById("soilMoistureDataChart"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            label: "Soil Moisture",
+            data: [],
+            backgroundColor: "rgba(255, 159, 64, 0.2)",
+            borderColor: "rgba(255, 159, 64, 1)",
+            borderWidth: 1,
+          }],
+        },
+      });
+
+      const lightIntensityChart = new Chart(document.getElementById("lightIntensityDataChart"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            label: "Light Intensity",
+            data: [],
+            backgroundColor: "rgba(255, 206, 86, 0.2)",
+            borderColor: "rgba(255, 206, 86, 1)",
+            borderWidth: 1,
+          }],
+        },
+      });
+
+      const co2Chart = new Chart(document.getElementById("CO2percentageDataChart"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            label: "CO2 Percentage",
+            data: [],
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          }],
+        },
+      });
+
+      // Firebase Data Fetching and Chart Update
+      function fetchDataAndUpdateChart(chart, dataRef, dataKey) {
+        onValue(dataRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            const labels = Object.keys(data);
+            const values = Object.values(data).map(item => item[dataKey]);
+
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = values;
+            chart.update();
+          }
+        }, handleFirebaseError);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchDataAndUpdateChart(temperatureChart, ref(database, "sensors/temperature"), "value");
+        fetchDataAndUpdateChart(humidityChart, ref(database, "sensors/humidity"), "value");
+        fetchDataAndUpdateChart(soilMoistureChart, ref(database, "sensors/soilMoisture"), "value");
+        fetchDataAndUpdateChart(lightIntensityChart, ref(database, "sensors/lightIntensity"), "value");
+        fetchDataAndUpdateChart(co2Chart, ref(database, "sensors/CO2percentage"), "value");
+      });
+
+      function toggleBulb() {
+        const bulbSwitch = document.getElementById("bulb-switch");
+        set(ref(database, "controls/bulb"), bulbSwitch.checked);
+      }
+
+      document
+        .getElementById("bulb-switch")
+        .addEventListener("change", toggleBulb);
+        
+    </script>
+  </body>
+</html>

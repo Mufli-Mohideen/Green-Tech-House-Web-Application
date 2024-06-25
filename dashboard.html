@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Green Tech House Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <!-- <link href="css/style.css" rel="stylesheet" /> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      /* General styles for the dashboard */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .container-xxl {
+        padding: 20px;
+      }
+
+      .logo-img {
+        width: 150px;
+        height: auto;
+      }
+
+      /* Service item styles */
+      .service-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .service-item:hover {
+        transform: translateY(-10px);
+      }
+
+      .service-text {
+        padding: 20px;
+      }
+
+      .form-check-input {
+        width: 50px;
+        height: 25px;
+        background-color: #ccc;
+        border: none;
+        border-radius: 25px;
+        transition: background-color 0.3s;
+      }
+
+      .form-check-input:checked {
+        background-color: #4caf50;
+        border: 2px solid #4caf50;
+      }
+
+      .service-item:hover .service-text {
+        border: 2px solid #4caf50;
+      }
+
+      .form-check-input::before {
+        content: "";
+        display: block;
+        width: 23px;
+        height: 23px;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: transform 0.3s;
+      }
+
+      .form-check-input:checked::before {
+        transform: translateX(25px);
+      }
+
+      #downloadButton {
+        background-color: #4caf50;
+        border-color: #4caf50;
+        transition: background-color 0.3s, border-color 0.3s;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        color: #fff;
+      }
+
+      #downloadButton:hover {
+        background-color: #0206fa;
+        border-color: #0206fa;
+        opacity: 0.6;
+      }
+
+      /* Meter grid styles */
+      .meter-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .meter-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .circular-meter {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #f3f3f3;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+      }
+
+      .circular-meter .mask {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        clip: rect(0px, 150px, 150px, 75px);
+      }
+
+      .circular-meter .mask .fill {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        clip: rect(0px, 75px, 150px, 0px);
+      }
+
+      .circular-meter .inside-circle {
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background-color: #fff;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .circular-meter .inside-circle span {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .animated-div {
+        animation: moveUpDown 2s infinite alternate;
+      }
+
+      .red {
+        background-color: #ff4c4c;
+      }
+
+      .yellow {
+        background-color: #ffeb3b;
+      }
+
+      .green {
+        background-color: #4caf50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+      <a
+        href="index.html"
+        class="navbar-brand d-flex align-items-center px-4 px-lg-5"
+      >
+        <img src="img/green tech house 2.png" alt="" class="logo-img" />
+      </a>
+      <button
+        type="button"
+        class="navbar-toggler me-4"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="h-100 d-inline-flex align-items-center mx-n2">
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <a class="btn btn-link text-dark" href=""
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="#" class="nav-item nav-link">Home</a>
+        </div>
+        <a
+          href="login.html"
+          class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block"
+          >Log out<i class="fa fa-arrow-right ms-3"></i
+        ></a>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="container-xxl py-5" id="dashboard">
+      <div class="container">
+        <div
+          class="text-center mx-auto mb-5 wow fadeInUp"
+          data-wow-delay="0.1s"
+          style="max-width: 500px"
+        >
+          <center>
+            <a href="index.html"
+              ><img src="img/green tech house 1.png" alt="" class="logo-img"
+            /></a>
+          </center>
+          <h1 class="display-5 mb-5">Dashboard</h1>
+        </div>
+
+        <div class="row g-4">
+          <!-- Bulb Control -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-3 text-center">
+                <h4 class="mb-3">Bulb Control</h4>
+                <div class="form-check form-switch switch-left">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="bulb-switch"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-3 text-center">
+                <h4 class="mb-3">Water Pump Control</h4>
+                <div class="form-check form-switch switch-left">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="pump-switch"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-3 text-center">
+                <h4 class="mb-3">Fan Control</h4>
+                <div class="form-check form-switch switch-left">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="fan-switch"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button id="downloadButton">View security Report</button>
+          <button id="downloadButton" style="display: none">
+            Download Security Report
+          </button>
+          <iframe
+            id="pdfViewer"
+            style="display: none; width: 100%; height: 500px"
+          ></iframe>
+        </div>
+
+        <!-- Meter Grid -->
+        <div class="meter-grid">
+          <!-- Temperature Meter -->
+          <div class="meter-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-5 text-center animated-div">
+                <h4 class="mb-3">Temperature</h4>
+                <div class="circular-meter" id="temperature-meter">
+                  <div class="mask full">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="mask half">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="inside-circle">
+                    <span id="temperature-value">--°C</span>
+                  </div>
+                </div>
+                <div class="message" id="temperature-message"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humidity Meter -->
+          <div class="meter-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-5 text-center animated-div">
+                <h4 class="mb-3">Humidity</h4>
+                <div class="circular-meter" id="humidity-meter">
+                  <div class="mask full">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="mask half">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="inside-circle">
+                    <span id="humidity-value">--%</span>
+                  </div>
+                </div>
+                <div class="message" id="humidity-message"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soil Moisture Meter -->
+          <div class="meter-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-5 text-center animated-div">
+                <h4 class="mb-3">Soil Moisture</h4>
+                <div class="circular-meter" id="soilMoisture-meter">
+                  <div class="mask full">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="mask half">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="inside-circle">
+                    <span id="soilMoisture-value">--%</span>
+                  </div>
+                </div>
+                <div class="message" id="soilMoisture-message"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Light Intensity Meter -->
+          <div class="meter-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-5 text-center animated-div">
+                <h4 class="mb-3">Light Intensity</h4>
+                <div class="circular-meter" id="lightIntensity-meter">
+                  <div class="mask full">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="mask half">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="inside-circle">
+                    <span id="lightIntensity-value">--%</span>
+                  </div>
+                </div>
+                <div class="message" id="lightIntensity-message"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CO2 percentage -->
+          <div class="meter-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded d-flex h-100">
+              <div class="service-text rounded p-5 text-center animated-div">
+                <h4 class="mb-3">CO2 percentage</h4>
+                <div class="circular-meter" id="CO2percentage-meter">
+                  <div class="mask full">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="mask half">
+                    <div class="fill"></div>
+                  </div>
+                  <div class="inside-circle">
+                    <span id="CO2percentage-value">--%</span>
+                  </div>
+                </div>
+                <div class="message" id="CO2percentage-message"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        set,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCNAEVfx143zTaXrJxWNKfrDlx0m8QTqEQ",
+        authDomain: "green-techhouse.firebaseapp.com",
+        databaseURL: "https://green-techhouse-default-rtdb.firebaseio.com",
+        projectId: "green-techhouse",
+        storageBucket: "green-techhouse.appspot.com",
+        messagingSenderId: "264801350647",
+        appId: "1:264801350647:web:0602ecb58fa06ef31834f2",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      function handleFirebaseError(error) {
+        console.error("Firebase error:", error);
+      }
+
+      function updateTemperatureMeter(value, max = 50) {
+        const meter = document.getElementById("temperature-meter");
+        const fill = meter.querySelector(".fill");
+        const rotation = (value / max) * 180;
+        fill.style.transform = `rotate(${rotation}deg)`;
+
+        let colorClass = "green";
+        let message = "Optimal";
+        if (value >= max * 0.33 && value < max * 0.66) {
+          colorClass = "yellow";
+          message = "Medium";
+        } else if (value >= max * 0.66) {
+          colorClass = "red";
+          message = "Critical ";
+        }
+
+        fill.className = `fill ${colorClass}`;
+        document.getElementById("temperature-message").textContent = message;
+        document.getElementById(
+          "temperature-value"
+        ).textContent = `${value} °C`;
+      }
+
+      function updateHumidityMeter(value, max = 100) {
+        const meter = document.getElementById("humidity-meter");
+        const fill = meter.querySelector(".fill");
+        const rotation = (value / max) * 180;
+        fill.style.transform = `rotate(${rotation}deg)`;
+
+        let colorClass = "green";
+        let message = "Optimal";
+        if (value >= max * 0.33 && value < max * 0.66) {
+          colorClass = "yellow";
+          message = "Medium";
+        } else if (value >= max * 0.66) {
+          colorClass = "red";
+          message = "Critical";
+        }
+
+        fill.className = `fill ${colorClass}`;
+        document.getElementById("humidity-message").textContent = message;
+        document.getElementById("humidity-value").textContent = `${value} %`;
+      }
+
+      function updateSoilMoistureMeter(value, max = 100) {
+        const meter = document.getElementById("soilMoisture-meter");
+        const fill = meter.querySelector(".fill");
+        const rotation = (value / max) * 180;
+        fill.style.transform = `rotate(${rotation}deg)`;
+
+        let colorClass = "green";
+        let message = "Optimal";
+        if (value >= max * 0.33 && value < max * 0.66) {
+          colorClass = "yellow";
+          message = "Medium";
+        } else if (value >= max * 0.66) {
+          colorClass = "red";
+          message = "Critical";
+        }
+
+        fill.className = `fill ${colorClass}`;
+        document.getElementById("soilMoisture-message").textContent = message;
+        document.getElementById(
+          "soilMoisture-value"
+        ).textContent = `${value} %`;
+      }
+
+      function updateLightIntensityMeter(value, max = 1000) {
+        const meter = document.getElementById("lightIntensity-meter");
+        const fill = meter.querySelector(".fill");
+        const rotation = (value / max) * 180;
+        fill.style.transform = `rotate(${rotation}deg)`;
+
+        let colorClass = "green";
+        let message = "Optimal";
+        if (value >= max * 0.33 && value < max * 0.66) {
+          colorClass = "yellow";
+          message = "Medium";
+        } else if (value >= max * 0.66) {
+          colorClass = "red";
+          message = "Critical";
+        }
+
+        fill.className = `fill ${colorClass}`;
+        document.getElementById("lightIntensity-message").textContent = message;
+        document.getElementById(
+          "lightIntensity-value"
+        ).textContent = `${value} %`;
+      }
+
+      function updateCO2PercentageMeter(value, max = 100) {
+        const meter = document.getElementById("CO2percentage-meter");
+        const fill = meter.querySelector(".fill");
+        const rotation = (value / max) * 180;
+        fill.style.transform = `rotate(${rotation}deg)`;
+
+        let colorClass = "green";
+        let message = "Optimal";
+        if (value >= max * 0.33 && value < max * 0.66) {
+          colorClass = "yellow";
+          message = "Medium";
+        } else if (value >= max * 0.66) {
+          colorClass = "red";
+          message = "Critical";
+        }
+
+        fill.className = `fill ${colorClass}`;
+        document.getElementById("CO2percentage-message").textContent = message;
+        document.getElementById(
+          "co2percentage-value"
+        ).textContent = `${value} %`;
+      }
+
+      function fetchAndUpdateMeters() {
+        const db = getDatabase();
+
+        const tempRef = ref(db, "Sensors/temperature");
+        const humidityRef = ref(db, "Sensors/humidity");
+        const soilMoistureRef = ref(db, "Sensors/soilMoisture");
+        const CO2percentageRef = ref(db, "Sensors/co2percentage");
+        const lightIntensityRef = ref(db, "Sensors/lightIntensity");
+
+        onValue(tempRef, (snapshot) => {
+          updateTemperatureMeter(snapshot.val());
+        });
+
+        onValue(humidityRef, (snapshot) => {
+          updateHumidityMeter(snapshot.val());
+        });
+
+        onValue(soilMoistureRef, (snapshot) => {
+          updateSoilMoistureMeter(snapshot.val());
+        });
+
+        onValue(CO2percentageRef, (snapshot) => {
+          updateCO2PercentageMeter(snapshot.val());
+        });
+
+        onValue(lightIntensityRef, (snapshot) => {
+          updateLightIntensityMeter(snapshot.val());
+        });
+      }
+
+      fetchAndUpdateMeters();
+
+      //temperature chart
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const db = getDatabase();
+
+        const ctx1 = document
+          .getElementById("temperatureDataChart")
+          .getContext("2d");
+        const ctx2 = document
+          .getElementById("humidityDataChart")
+          .getContext("2d");
+        const ctx3 = document
+          .getElementById("soilMoistureDataChart")
+          .getContext("2d");
+        const ctx4 = document
+          .getElementById("lightIntensityDataChart")
+          .getContext("2d");
+        const ctx5 = document
+          .getElementById("CO2percentageDataChart")
+          .getContext("2d");
+
+        let pastTemperatureData = [];
+        const labels = [];
+        const temperatureDataset = {
+          label: "temperature",
+          data: [],
+          fill: false,
+          borderColor: getRandomColor(),
+          tension: 0.4,
+        };
+
+        const temperatureDataChart = new Chart(ctx1, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [temperatureDataset],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        function getRandomColor() {
+          return "#" + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        function updateTemperatureChart(newTemperature) {
+          const timestamp = new Date().toLocaleTimeString();
+          labels.push(timestamp);
+          pastTemperatureData.push(newTemperature);
+          temperatureDataset.data.push(newTemperature);
+
+          if (labels.length > 10) {
+            labels.shift();
+            temperatureDataset.data.shift();
+            pastTemperatureData.shift();
+          }
+
+          sensorDataChart.update();
+        }
+
+        function fetchAndUpdateTemperature() {
+          const tempRef = ref(db, "Sensors/temperature");
+
+          tempRef.on(
+            "value",
+            (snapshot) => {
+              const newTemperature = snapshot.val();
+              updateTemperatureChart(newTemperature);
+            },
+            (error) => {
+              console.error("Error fetching temperature data:", error);
+            }
+          );
+        }
+
+        fetchAndUpdateTemperature();
+      });
+
+      function toggleBulb() {
+        const bulbSwitch = document.getElementById("bulb-switch");
+        set(ref(database, "Controls/bulb"), bulbSwitch.checked);
+      }
+
+      function togglePump() {
+        const pumpSwitch = document.getElementById("pump-switch");
+        set(ref(database, "Controls/pump"), pumpSwitch.checked);
+      }
+
+      function toggleFan() {
+        const pumpSwitch = document.getElementById("fan-switch");
+        set(ref(database, "Controls/fan"), pumpSwitch.checked);
+      }
+
+      document
+        .getElementById("bulb-switch")
+        .addEventListener("change", toggleBulb);
+      document
+        .getElementById("pump-switch")
+        .addEventListener("change", togglePump);
+      document
+        .getElementById("fan-switch")
+        .addEventListener("change", toggleFan);
+
+      document
+        .getElementById("downloadButton")
+        .addEventListener("click", function () {
+          // Sample data from the JSON file
+          const data = {
+            pir: 1, // Assuming motion is detected
+          };
+
+          // Check if motion is detected
+          if (data.pir) {
+            const dateTime = new Date();
+            const newEntry = {
+              motion: "",
+              dateTime: dateTime.toLocaleString(),
+            };
+
+            // Retrieve existing data from local storage
+            let motionData =
+              JSON.parse(localStorage.getItem("motionData")) || [];
+
+            // Add new entry to the data
+            motionData.push(newEntry);
+
+            // Store updated data back to local storage
+            localStorage.setItem("motionData", JSON.stringify(motionData));
+
+            // Generate report from accumulated data
+            const reportContent = motionData
+              .map(
+                (entry) => `
+            Motion Detected: ${entry.pir}
+            Date and Time: ${entry.dateTime}
+        `
+              )
+              .join("\n\n");
+
+            const report = `
+            Security Report
+            =======================
+            ${reportContent}
+        `;
+
+            // Generate PDF using jsPDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(16);
+            doc.text("Security Report", 20, 20);
+            doc.setFontSize(12);
+
+            let yOffset = 40; // Initial offset
+            motionData.forEach((entry) => {
+              doc.text(`Motion Detected: ${entry.motion}`, 20, yOffset);
+              yOffset += 10;
+              doc.text(`Date and Time: ${entry.dateTime}`, 20, yOffset);
+              yOffset += 20; // Add more space between entries
+            });
+
+            // Convert the PDF to a Blob
+            const pdfBlob = doc.output("blob");
+
+            // Create a URL for the Blob and display it in the iframe
+            const pdfURL = URL.createObjectURL(pdfBlob);
+            const iframe = document.getElementById("pdfViewer");
+            iframe.style.display = "block";
+            iframe.src = pdfURL;
+
+            // Hide the view button and show the download button
+            const viewButton = document.getElementById("viewButton");
+            const downloadButton = document.getElementById("downloadButton");
+            viewButton.style.display = "none";
+            downloadButton.style.display = "block";
+
+            // Set the download button to download the PDF when clicked
+            downloadButton.addEventListener("click", function () {
+              const link = document.createElement("a");
+              link.href = pdfURL;
+              link.download = "security_report.pdf";
+              link.click();
+            });
+          } else {
+            alert("No motion detected.");
+          }
+        });
+    </script>
+  </body>
+</html>
